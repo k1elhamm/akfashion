@@ -1,4 +1,8 @@
 <mat-card>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
   <form [formGroup]="sendForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>

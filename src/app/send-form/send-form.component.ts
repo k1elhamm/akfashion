@@ -14,7 +14,7 @@ export class SendFormComponent {
   response: any;
   districts: any[] = [];
   filteredDistricts: Observable<any[]> | undefined = of([]);
-  token: string = '';
+  errorMessage: string = ''; // Variable to track errors
 
   constructor(private fb: FormBuilder, private senditService: SenditService, private snackBar: MatSnackBar) {
     this.sendForm = this.fb.group({
@@ -79,16 +79,21 @@ export class SendFormComponent {
     this.senditService.submitDelivery(formData).subscribe(
       res => {
         this.response = res;
-        this.snackBar.open('Votre commande a été bien enregistrée.', 'Fermer', {
+        this.snackBar.open('Votre commande a été bien enregistrée. / تم تسجيل طلبك بنجاح.', 'Fermer / إغلاق', {
           duration: 3000,
         });
+        this.sendForm.reset(); // Clear the form on success
+        this.errorMessage = ''; // Clear any previous errors
       },
       err => {
         console.error('Error occurred during delivery submission:', err);
-        this.snackBar.open('Erreur lors de l\'enregistrement de la commande.', 'Fermer', {
-          duration: 3000,
-        });
+        this.errorMessage = 'Erreur lors de l\'enregistrement de la commande. / حدث خطأ أثناء تسجيل الطلب.';
+
+        // this.snackBar.open('Erreur lors de l\'enregistrement de la commande. / حدث خطأ أثناء تسجيل الطلب.', 'Fermer / إغلاق', {
+        //   duration: 3000,
+        // });
       }
     );
   }
+  
 }
