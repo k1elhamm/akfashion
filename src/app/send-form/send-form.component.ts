@@ -70,7 +70,7 @@ export class SendFormComponent {
       comment: '',
       products: '',
       allow_open: 1,
-      allow_try: 1,
+      allow_try: 0,
       products_from_stock: 0,
       option_exchange: 0,
       delivery_exchange_id: ''
