@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sendit",
+            "outputPath": "docs",
             "baseHref": "/akfashion/",
             "index": "src/index.html",
             "main": "src/main.ts",
