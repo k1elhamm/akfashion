@@ -1,0 +1,55 @@
+<mat-card>
+  <form [formGroup]="sendForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>
+        <span class="label-left">Nom  </span>
+        <span class="label-right">الاسم</span>
+      </mat-label>
+      <input matInput type="text" formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>
+        <span class="label-left">Adresse  </span>
+        <span class="label-right">العنوان</span>
+      </mat-label>
+      <input matInput type="text" formControlName="address" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>
+        <span class="label-left">Ville  </span>
+        <span class="label-right">المدينة</span>
+      </mat-label>
+      <input type="text" matInput [matAutocomplete]="auto" formControlName="district_id" required>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let district of filteredDistricts | async" [value]="district">
+          {{ district.name }} {{ district.arabic_name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>
+        <span class="label-left">Numéro de téléphone  </span>
+        <span class="label-right">رقم الهاتف</span>
+      </mat-label>
+      <input matInput type="text" formControlName="phone" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>
+        <span class="label-left">Montant  </span>
+        <span class="label-right">المبلغ</span>
+      </mat-label>
+      <input matInput type="text" formControlName="amount" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="sendForm.invalid">
+      <mat-label>
+        <span class="label-left">Soumettre  </span>
+        <span class="label-right">إرسال</span>
+      </mat-label>
+    </button>
+  </form>
+</mat-card>
